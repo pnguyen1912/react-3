@@ -1,5 +1,5 @@
 import React from 'react'
-
+import './App.css'
 class App extends React.Component {
 
   state = {
@@ -47,32 +47,50 @@ class App extends React.Component {
   }
 
 
+
+
   render() {
     return (
-      <div style={{ textAlign: 'center', width: '70%' }}>
+      <div style={{ textAlign: 'center', width: '70%', padding: '15%', font: '20px', }}>
         <h1>To Dos</h1>
-        <input style={{ borderStyle: 'solid', width: '98.5%' }} placeholder='What need to be done...' type="text" value={this.state.temp} onKeyDown={(e) => { if (e.key === 'Enter') { this.addToToDo() } }} onChange={event => (this.setState({ temp: event.target.value }))} />
+        <input style={{ borderStyle: 'solid', width: '98.7%', height: '50px' }} placeholder='What need to be done...' type="text" value={this.state.temp} onKeyDown={(e) => { if (e.key === 'Enter') { this.addToToDo() } }} onChange={event => (this.setState({ temp: event.target.value }))} />
         <div>
           {this.state.showing !== 'done' ? (
             this.state.toDoList.map(item => {
               return (
-                <div>
-                  <div style={{ borderStyle: 'solid' }} onClick={() => {
-                    const index = this.state.toDoList.indexOf(item)
-                    const array = this.state.toDoList.slice();
-                    array.splice(index, 1)
-                    this.setState({ doneList: [...this.state.doneList, item], toDoList: array })
-                  }}>                  <input style={{ float: 'left', }} type="checkbox" disabled />
-                    {item}</div>
+                <div style={{ height: '50px', borderStyle: 'solid' }}
+                  onMouseOver={() => document.getElementById(`${item}`).style.display = 'block'}
+                  onMouseOut={() => document.getElementById(`${item}`).style.display = 'none'}
+
+                >
+                  <div  >
+                    <div style={{}} onClick={() => {
+                      const index = this.state.toDoList.indexOf(item)
+                      const array = this.state.toDoList.slice();
+                      array.splice(index, 1)
+                      this.setState({ doneList: [...this.state.doneList, item], toDoList: array })
+                    }}>                  <input style={{ float: 'left', }} type="checkbox" disabled />
+                      {item}</div>
+                    <div>
+                      <button id={item} style={{ float: 'right', display: 'none' }}
+                        onClick={() => {
+                          const index = this.state.toDoList.indexOf(item)
+                          const array = this.state.toDoList.slice();
+                          array.splice(index, 1)
+                          this.setState({ toDoList: array })
+                        }}
+
+                      >X</button>
+                    </div></div>
                 </div>
               )
             })) : null}
         </div>
-        <div>
+        <div  >
           {this.state.showing !== 'active' ? (
             this.state.doneList.map(item => {
               return (
-                <div
+                <div style={{ height: '50px', borderStyle: 'solid' }}
                   onClick={() => {
                     const index = this.state.doneList.indexOf(item)
                     const array = this.state.doneList.slice();
@@ -80,7 +98,7 @@ class App extends React.Component {
                     this.setState({ toDoList: [...this.state.toDoList, item], doneList: array })
                   }}>
                   <div style={{
-                    borderStyle: 'solid',
+
                     textDecoration: 'line-through',
                     fontStyle: 'italic'
                   }}> <input style={{ float: 'left' }} type="checkbox" checked disabled />{item}</div>
@@ -90,12 +108,12 @@ class App extends React.Component {
         </div>
 
 
-        <div style={{ borderStyle: 'solid' }}>
-          {this.state.toDoList.length} item left
-          <button onClick={this.buttonClicked} value='all' >All</button>
-          <button onClick={this.buttonClicked} value='active'>Active</button>
-          <button onClick={this.buttonClicked} value='done'>Completed</button>
-          <button style={{ float: 'right' }} onClick={this.clearClicked}>Clear Completed</button>
+        <div style={{ borderStyle: 'solid', height: '50px', fontSize: '20px' }}>
+          <p style={{ float: 'left', paddingLeft: '20px' }}>{this.state.toDoList.length} item left</p>
+          <button style={{ borderRadius: '8px', height: '50px' }} onClick={this.buttonClicked} value='all' >All</button>
+          <button style={{ borderRadius: '8px', height: '50px' }} onClick={this.buttonClicked} value='active'>Active</button>
+          <button style={{ borderRadius: '8px', height: '50px' }} onClick={this.buttonClicked} value='done'>Completed</button>
+          <button style={{ float: 'right', borderRadius: '8px', height: '50px' }} onClick={this.clearClicked}>Clear Completed</button>
         </div>
       </div>
     )
