@@ -50,9 +50,9 @@ class App extends React.Component {
 
   render() {
     return (
-      <div style={{ textAlign: 'center', width: '70%', padding: '15%', font: '20px', }}>
-        <h1>To Dos</h1>
-        <input style={{ borderStyle: 'solid', width: '98.7%', height: '50px' }} placeholder='What need to be done...' type="text" value={this.state.temp} onKeyDown={(e) => { if (e.key === 'Enter') { this.addToToDo() } }} onChange={event => (this.setState({ temp: event.target.value }))} />
+      <div style={{ textAlign: 'center', font: '20px', }}>
+        <header>To Dos</header>
+        <input style={{ borderStyle: 'solid', height: '50px' }} placeholder='What need to be done...' type="text" value={this.state.temp} onKeyDown={(e) => { if (e.key === 'Enter') { this.addToToDo() } }} onChange={event => (this.setState({ temp: event.target.value }))} />
         <div>
           {this.state.showing !== 'done' ? (
             this.state.toDoList.map(item => {
@@ -68,7 +68,7 @@ class App extends React.Component {
                       const array = this.state.toDoList.slice();
                       array.splice(index, 1)
                       this.setState({ doneList: [...this.state.doneList, item], toDoList: array })
-                    }}>                  <input style={{ float: 'left', }} type="checkbox" disabled />
+                    }}>                  <input style={{ float: 'left', }} type="checkbox" />
                       {item}</div>
                     <div>
                       <button id={item} style={{ float: 'right', display: 'none' }}
@@ -79,7 +79,7 @@ class App extends React.Component {
                           this.setState({ toDoList: array })
                         }}
 
-                      ><span class="icon icon-error"></span></button>
+                      ><span className="icon icon-error"></span></button>
                     </div></div>
                 </div>
               )
@@ -100,7 +100,7 @@ class App extends React.Component {
 
                     textDecoration: 'line-through',
                     fontStyle: 'italic'
-                  }}> <input style={{ float: 'left' }} type="checkbox" checked disabled />{item}</div>
+                  }}> <input style={{ float: 'left' }} type="checkbox" checked />{item}</div>
                 </div>
               )
             })) : null}
@@ -108,7 +108,7 @@ class App extends React.Component {
 
 
         <div style={{ borderStyle: 'solid', height: '50px', fontSize: '20px' }}>
-          <p style={{ float: 'left', paddingLeft: '20px' }}>{this.state.toDoList.length} item left</p>
+          <p style={{ float: 'left', paddingLeft: '20px', margin: '0', height: '50px' }}>{this.state.toDoList.length} item left</p>
           <button style={{ borderRadius: '8px', height: '50px' }} onClick={this.buttonClicked} value='all' >All</button>
           <button style={{ borderRadius: '8px', height: '50px' }} onClick={this.buttonClicked} value='active'>Active</button>
           <button style={{ borderRadius: '8px', height: '50px' }} onClick={this.buttonClicked} value='done'>Completed</button>
@@ -117,6 +117,11 @@ class App extends React.Component {
       </div>
     )
   }
+
+  onHover = () => {
+
+  }
+
 
 }
 

@@ -1,4 +1,18 @@
 $assets-path: "~@uitk/ui-toolkit/dist/css/nm-px/assets";
 @import '~@uitk/ui-toolkit/src/scss/themes/nm-px/uitk.scss';
 
+body{
+  margin: 0;
+}
 
+
+header {
+  font-weight: bold;
+  display: block;
+  font-size: 60px;
+  background-color: #336283;
+  color: #f1f1f1;
+  width: 100%;
+  padding: 20px;
+  text-align: center;
+}
