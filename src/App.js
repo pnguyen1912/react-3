@@ -1,5 +1,4 @@
 import React from 'react'
-import './App.css'
 class App extends React.Component {
 
   state = {
@@ -80,7 +79,7 @@ class App extends React.Component {
                           this.setState({ toDoList: array })
                         }}
 
-                      >X</button>
+                      ><span class="icon icon-error"></span></button>
                     </div></div>
                 </div>
               )
