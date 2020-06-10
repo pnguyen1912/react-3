@@ -1,14 +1,15 @@
 import React from 'react'
 class App extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      temp: '',
+      toDoList: [],
+      doneList: [],
+      showing: 'all',
+    }
 
-  state = {
-    temp: '',
-    toDoList: [],
-    doneList: [],
-    showing: 'all',
   }
-
-
 
   checkinput = (event) => {
     if (event === '') {
@@ -51,7 +52,7 @@ class App extends React.Component {
   render() {
     return (
       <div style={{ textAlign: 'center', font: '20px', }}>
-        <header>To Dos</header>
+        <header>To Do's</header>
         <input style={{ borderStyle: 'solid', height: '50px' }} placeholder='What need to be done...' type="text" value={this.state.temp} onKeyDown={(e) => { if (e.key === 'Enter') { this.addToToDo() } }} onChange={event => (this.setState({ temp: event.target.value }))} />
         <div>
           {this.state.showing !== 'done' ? (
@@ -117,11 +118,6 @@ class App extends React.Component {
       </div>
     )
   }
-
-  onHover = () => {
-
-  }
-
 
 }
 
